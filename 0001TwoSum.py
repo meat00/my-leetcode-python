@@ -5,8 +5,7 @@ class Solution:
         m = dict()
         for i,n in enumerate(nums):
             ret = target - n
-            # 注意这里需要判断!=None,因为get(ret)可能返回0
-            if m.get(ret) != None:
+            if ret in m:
                 return [i, m[ret]]
             m[n] = i
 
