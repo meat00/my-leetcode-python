@@ -3,26 +3,24 @@
 
 class Solution:
     def reverse(self, x):
-        str_x = str(x)
-        list_rev_x = list()
-        str_rev_x = ''
-        for c in str_x:
-            if c == '-':
-                str_rev_x = '-'
-            else:
-                list_rev_x.append(c)
-        flag = True
-        for s in list_rev_x[::-1]:
-            if flag == True and s == 0:
-                continue
-            else:
-                flag = False
-            str_rev_x = str_rev_x + s
-        int_rev_x = int(str_rev_x)
-        if int_rev_x > (2**31 - 1) or int_rev_x < (-2**31):
-            return 0
+        INTMAX_MOD = (2**31 - 1) // 10
+        INTMIN_MOD = -((-2**31) // -10)
+        rev = 0
+        if x > 0:
+            while x:
+                pop = x % 10
+                x = x // 10
+                if rev > INTMAX_MOD or (rev == INTMAX_MOD and pop > 7):
+                    return 0
+                rev = rev * 10 + pop
         else:
-            return int(str_rev_x)
+            while x:
+                pop = x % -10
+                x = -(x // -10)
+                if rev < INTMIN_MOD or (rev == INTMIN_MOD and pop < -8):
+                    return 0
+                rev = rev * 10 + pop
+        return rev
 
 if __name__ == "__main__":
     s = Solution()
