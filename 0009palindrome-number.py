@@ -3,23 +3,24 @@
 
 class Solution():
     def isPalindrome(self, x: int) -> bool:
-        if x < 0:
+        '''
+        注意特殊情况
+        1. x小于0
+        2. 最后一位为0
+        3. x为0
+        '''
+        if x < 0 or (x % 10 == 0 and x != 0):
             return False
-        htbl = []
-        org = x
-        while x:
-            htbl.insert(0, x % 10)
+        rev = 0
+        while x > rev:
+            rev = rev * 10 + x % 10
             x = x // 10
-        i = 0
-        while org:
-            if org % 10 != htbl[i]:
-                return False
-            i += 1
-            org = org // 10
-        return True
+            print("rev:%d,x:%d" %(rev, x))
+        return x == rev or rev // 10 == x
 
 if __name__ == "__main__":
     s = Solution()
-    x = 123454321
-    ret = s.isPalindrome(x)
-    print(ret)
+    test = [0, 121, 10, -121]
+    for x in test:
+        ret = s.isPalindrome(x)
+        print(ret)
