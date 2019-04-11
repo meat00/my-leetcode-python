@@ -3,8 +3,8 @@
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        leftPa  = ['(', '[', '{']
-        rightPa = [')', ']', '}']
+        leftPa  = '([{'
+        rightPa = ')]}'
         pre     = list()
         for c in s:
             if c in leftPa:
