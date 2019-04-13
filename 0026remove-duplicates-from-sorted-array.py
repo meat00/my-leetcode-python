@@ -5,7 +5,7 @@
 class Solution:
     def removeDuplicates(self, nums):
         if len(nums) < 2:
-            return nums
+            return len(nums)
         i = 1
         while i < len(nums):
             if nums[i-1] == nums[i]:
