@@ -6,13 +6,12 @@ class Solution:
     def removeDuplicates(self, nums):
         if len(nums) < 2:
             return len(nums)
-        i = 1
-        while i < len(nums):
-            if nums[i-1] == nums[i]:
-                nums.remove(nums[i])
-            else:
-                i += 1
-        return i
+        length = 0
+        for i in range(len(nums)):
+            if nums[i] != nums[length]:
+                length += 1
+                nums[length] = nums[i]
+        return length + 1
 
 
 if __name__ == "__main__":
@@ -25,4 +24,4 @@ if __name__ == "__main__":
     for test in tests:
         ret = s.removeDuplicates(test)
         print(ret)
-        print(test)
+        print(test[:ret])
