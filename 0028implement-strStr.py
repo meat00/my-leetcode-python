@@ -30,7 +30,10 @@ class Solution:
             if j == -1 or needle[j] == needle[i]:
                 i += 1
                 j += 1
-                partten_next.append(j)
+                if needle[i] != needle[j]:
+                    partten_next.append(j)
+                else:
+                    partten_next.append(partten_next[j])
             else:
                 j = partten_next[j]
             # print("i:%d,j:%d --- " %(i, j), end='')
