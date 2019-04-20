@@ -3,10 +3,10 @@
 
 class Solution:
     def countAndSay(self, n: int) -> str:
-        if n == 1:
-            return "1"
+        # if n == 1:
+        #     return "1"
         pre = "1"
-        for cnt in range(1, n+1):
+        for cnt in range(1, n):
             cntQ = list()
             cntStr = str()
             for s in pre:
@@ -21,5 +21,5 @@ class Solution:
 
 if __name__ == "__main__":
     s = Solution()
-    for test in range(1, 30):
+    for test in range(1, 5):
         print(s.countAndSay(test))
