@@ -3,40 +3,22 @@
 
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
-        aLen = len(a)
-        bLen = len(b)
-        i = 1
-        sumList = list()
+        m = len(a) - 1
+        n = len(b) - 1
+        res = ''
         c = 0
-        while i <= aLen and i <= bLen:
-            c, sumChar = self.addBStr(a[aLen-i], b[bLen-i], c)
-            i += 1
-            sumList.append(sumChar)
-        while i <= aLen:
-            c, sumChar = self.addBStr(a[aLen-i], '0', c)
-            i += 1
-            sumList.append(sumChar)
-        while i <= bLen:
-            c, sumChar = self.addBStr(b[bLen-i], '0', c)
-            i += 1
-            sumList.append(sumChar)
+        while m >= 0 or n >= 0:
+            c1 = (ord(a[m]) - ord('0')) if m >= 0 else 0
+            c2 = (ord(b[n]) - ord('0')) if n >= 0 else 0
+            m -= 1
+            n -= 1
+            sumChar = c1 + c2 + c
+            res = chr(ord('0') + sumChar % 2) + res
+            c = sumChar // 2
         if c:
-            sumList.append('1')
-        ret = str()
-        for c in sumList:
-            ret = c + ret
-        return ret
+            return '1' + res
+        return res
 
-    def addBStr(self, c1, c2, c3):
-        sumChar = ord(c1) + ord(c2) + c3 - (2 * ord('0'))
-        if sumChar == 0:
-            return (0, '0')
-        elif sumChar == 1:
-            return (0, '1')
-        elif sumChar == 2:
-            return (1, '0')
-        else:
-            return (1, '1')
 
 if __name__ == "__main__":
     s = Solution()
