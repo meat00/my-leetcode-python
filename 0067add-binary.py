@@ -7,7 +7,7 @@ class Solution:
         bLen = len(b)
         i = 1
         sumList = list()
-        c = '0'
+        c = 0
         while i <= aLen and i <= bLen:
             c, sumChar = self.addBStr(a[aLen-i], b[bLen-i], c)
             i += 1
@@ -20,7 +20,7 @@ class Solution:
             c, sumChar = self.addBStr(b[bLen-i], '0', c)
             i += 1
             sumList.append(sumChar)
-        if c != '0':
+        if c:
             sumList.append('1')
         ret = str()
         for c in sumList:
@@ -28,15 +28,15 @@ class Solution:
         return ret
 
     def addBStr(self, c1, c2, c3):
-        sumChar = ord(c1) + ord(c2) + ord(c3) - (3 * ord('0'))
+        sumChar = ord(c1) + ord(c2) + c3 - (2 * ord('0'))
         if sumChar == 0:
-            return ('0', '0')
+            return (0, '0')
         elif sumChar == 1:
-            return ('0', '1')
+            return (0, '1')
         elif sumChar == 2:
-            return ('1', '0')
+            return (1, '0')
         else:
-            return ('1', '1')
+            return (1, '1')
 
 if __name__ == "__main__":
     s = Solution()
