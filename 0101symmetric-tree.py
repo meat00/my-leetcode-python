@@ -11,26 +11,26 @@ class TreeNode:
 
 class Solution:
     '''
-    递归
+    遍历
     '''
     def isSymmetric(self, root):
         if root == None:
             return True
-        leftTree = root.left
-        rightTree = root.right
-        return self.isSameTree(leftTree, rightTree)
-
-    def isSameTree(self, treeA, treeB):
-        if treeA == None and treeB == None:
-            return True
-        if treeA and treeB:
-            if treeA.val != treeB.val:
+        deQueue = [root.left, root.right]
+        while len(deQueue):
+            leftNode = deQueue[0]
+            del deQueue[0]
+            rightNode = deQueue.pop()
+            if leftNode and rightNode:
+                if leftNode.val != rightNode.val:
+                    return False
+                else:
+                    deQueue.insert(0, leftNode.right)
+                    deQueue.insert(0, leftNode.left)
+                    deQueue.append(rightNode.left)
+                    deQueue.append(rightNode.right)
+            elif leftNode or rightNode:
                 return False
-            else:
-                return self.isSameTree(treeA.left, treeB.right) and \
-                        self.isSameTree(treeA.right, treeB.left)
-        if treeA or treeB:
-            return False
         return True
 
 
